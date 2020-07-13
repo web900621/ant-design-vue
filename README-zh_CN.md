@@ -39,7 +39,7 @@ $ npm install @jxstjh/ant-design-vue --save
 $ yarn add @jxstjh/ant-design-vue
 ```
 
-如果你的网络环境不佳，推荐使用 [nrm](npmjs.com/package/nrm)。
+如果你的网络环境不佳，推荐使用 [nrm](https://github.com/Pana/nrm)。
 
 ## 链接
 
