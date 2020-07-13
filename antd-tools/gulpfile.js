@@ -64,6 +64,7 @@ function dist(done) {
       hash: false,
       version: false,
     });
+    console.log('buildInfo ====== ====');
     console.log(buildInfo);
     done(0);
   });
@@ -228,17 +229,21 @@ gulp.task(
 );
 
 function publish(tagString, done) {
-  let args = ['publish', '--with-antd-tools'];
+  let args = ['publish', '--with-antd-tools', '--access=public'];
   if (tagString) {
     args = args.concat(['--tag', tagString]);
   }
   const publishNpm = process.env.PUBLISH_NPM_CLI || 'npm';
+
   runCmd(publishNpm, args, code => {
-    tag();
-    githubRelease(() => {
-      done(code);
-    });
+    done(code);
   });
+  // runCmd(publishNpm, args, code => {
+  //   tag();
+  //   githubRelease(() => {
+  //     done(code);
+  //   });
+  // });
 }
 
 function pub(done) {
@@ -358,6 +363,7 @@ gulp.task(
       console.log(chalk.bgRed('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'));
     }
     const npmArgs = getNpmArgs();
+    console.dir(npmArgs);
     if (npmArgs) {
       for (let arg = npmArgs.shift(); arg; arg = npmArgs.shift()) {
         if (/^pu(b(l(i(sh?)?)?)?)?$/.test(arg) && npmArgs.indexOf('--with-antd-tools') < 0) {

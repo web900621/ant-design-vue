@@ -40,9 +40,9 @@ const task = program.args[0];
 if (!task) {
   program.help();
 } else {
+  // eslint-disable-next-line no-console
   console.log('antd-tools run', task);
 
   require('../gulpfile');
-
   runTask(task);
 }
